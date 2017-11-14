@@ -67,13 +67,6 @@ class Holiday
     /**
      * @var int
      *
-     * @ORM\Column(name="open", type="integer")
-     */
-    private $open;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="closed", type="integer")
      */
     private $closed;
@@ -182,30 +175,6 @@ class Holiday
     public function getAccept()
     {
         return $this->accept;
-    }
-
-    /**
-     * Set open
-     *
-     * @param integer $open
-     *
-     * @return Holiday
-     */
-    public function setOpen($open)
-    {
-        $this->open = $open;
-
-        return $this;
-    }
-
-    /**
-     * Get open
-     *
-     * @return int
-     */
-    public function getOpen()
-    {
-        return $this->open;
     }
 
     /**
