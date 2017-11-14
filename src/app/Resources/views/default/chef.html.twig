@@ -51,7 +51,7 @@
                 </thead>
                 <tbody>
                        {% for list in list %}
-                           {% if list.closed == 1 %}
+                           {% if list.closed == 0 %}
                             <tr>
                                 <td>{{ list.id }}</td>
                                 <td>{{ list.user.username }}</td>

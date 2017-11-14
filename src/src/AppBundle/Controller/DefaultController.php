@@ -19,6 +19,7 @@ class DefaultController extends Controller
         ]);
     }
 
+    // User Daten holen
     /**
      * @Route("/chef", name="chef")
      */
@@ -36,6 +37,7 @@ class DefaultController extends Controller
         ));
     }
 
+    //Urlaub Akzeptiert in DB schreiben
     /**
      * @Route("/accept/{id}", name="accept")
      * @param $entityManager
@@ -59,6 +61,7 @@ class DefaultController extends Controller
         return $this->redirectToRoute('chef');
     }
 
+    //Urlaub abgelehnt in DB schreiben
     /**
      * @Route("/noaccept/{id}", name="noaccept")
      * @param $entityManager
