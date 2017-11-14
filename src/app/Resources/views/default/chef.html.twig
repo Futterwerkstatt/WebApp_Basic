@@ -25,7 +25,7 @@
                         <td>{{ list.holidayFrom | date('d-m-Y') }} - {{ list.holidayTo | date('d-m-Y') }}</td>
                         <td>5 days</td>
                         <td>20 left</td>
-                        <td><button type="button" class="btn btn-xs btn-success">accept</button></td>
+                        <td><a href="{{ path('accept',{'id':list.id}) }}"><button type="button" class="btn btn-xs btn-success">accept</button></a></td>
                         <td><button type="button" class="btn btn-xs btn-danger">declined</button></td>
                     </tr>
                 {% endfor %}
@@ -48,22 +48,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for list in list %}
-                    <tr>
-                        <td>{{ list.id }}</td>
-                        <td>{{ list.user.username }}</td>
-                        <td>{{ list.holidayFrom | date('d-m-Y') }} - {{ list.holidayTo | date('d-m-Y') }}</td>
-                        <td>5 days</td>
-                        <td>20 left</td>
-                        {% if list.accept == 0 %}
-                            <td><label class="label label-success">accept</label></td>
-                            <td></td>
-                        {% else %}
-                            <td></td>
-                            <td><label class="label label-danger">declined</label></td>
-                        {% endif %}
-                        </tr>
-                {% endfor %}
+                       {% for list in list %}
+                            {% if list.closed == 1 %}
+                            <tr>
+                                <td>{{ list.id }}</td>
+                                <td>{{ list.user.username }}</td>
+                                <td>{{ list.holidayFrom | date('d-m-Y') }} - {{ list.holidayTo | date('d-m-Y') }}</td>
+                                <td>5 days</td>
+                                 <td>20 left</td>
+                                {% if list.accept == 0 %}
+                                    <td><label class="label label-success">accept</label></td>
+                                    <td></td>
+                                {% else %}
+                                    <td></td>
+                                    <td><label class="label label-danger">declined</label></td>
+                                {% endif %}
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+
                 </tbody>
             </table>
         </div>

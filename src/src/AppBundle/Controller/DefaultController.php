@@ -27,7 +27,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getRepository('AppBundle:Holiday');
         $query = $em->createQueryBuilder('u')
-            ->where('u.open = 0')
+            ->where('u.open = 1')
             ->getQuery();
         $user = $query->getResult();
 
@@ -36,5 +36,47 @@ class DefaultController extends Controller
         ));
     }
 
+    /**
+     * @Route("/accept/{id}", name="accept")
+     * @param $entityManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function indexListUpdateAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('AppBundle:Holiday');
+
+        // Accept DB
+        $newaccept = '1';
+        $accept = $query->findAll();
+
+        foreach ($accept as $accept) {
+            $accept->setaccept($newaccept);
+            $em->persist($accept);
+        }
+
+        // Closed DB
+        $newopen = '0';
+        $open = $query->findAll();
+
+        foreach ($open as $open) {
+            $open->setopen($newopen);
+
+        }
+
+        // Closed DB
+        $newclosed = '1';
+        $closed = $query->findAll();
+
+        foreach ($closed as $closed) {
+            $closed->setclosed($newclosed);
+
+        }
+
+        // DB write
+        $em->flush();
+
+        return $this->redirectToRoute('chef');
+    }
 }
 

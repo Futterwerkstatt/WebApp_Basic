@@ -7,4 +7,4 @@ sudo chmod a+x /usr/local/bin/symfony
 sudo apt-get install php7.1
 
 # create a new symfony project
-symfony new src
+#symfony new src

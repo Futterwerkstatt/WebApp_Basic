@@ -64,6 +64,12 @@ class Holiday
      */
     private $open;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="closed", type="integer")
+     */
+    private $closed;
 
     /**
      * Get id
@@ -209,6 +215,22 @@ class Holiday
     public function setUser($user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClosed()
+    {
+        return $this->closed;
+    }
+
+    /**
+     * @param int $closed
+     */
+    public function setClosed($closed)
+    {
+        $this->closed = $closed;
     }
 }
 
