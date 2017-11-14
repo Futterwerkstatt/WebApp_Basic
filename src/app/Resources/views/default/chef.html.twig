@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ dump(list) }}
     <div class="row">
         <div class="col-xs-12"><h3>{{ 'profile.show.heading.open'|trans({}, 'AppBundle') }}</h3></div>
         <div class="col-md-12">
@@ -24,8 +23,8 @@
                         <td>{{ list.id }}</td>
                         <td>{{ list.user.username }}</td>
                         <td>{{ list.holidayFrom | date('d-m-Y') }} - {{ list.holidayTo | date('d-m-Y') }}</td>
-                        <td>5 days</td>
-                        <td>20 left</td>
+                        <td>{{ list.days }}</td>
+                        <td>{{ list.user.vacation }}</td>
                         <td><a href="{{ path('accept',{'id':list.id}) }}"><button type="button" class="btn btn-xs btn-success">accept</button></a></td>
                         <td><a href="{{ path('noaccept',{'id':list.id}) }}"><button type="button" class="btn btn-xs btn-danger">declined</button></a></td>
                     </tr>
@@ -56,8 +55,8 @@
                                 <td>{{ list.id }}</td>
                                 <td>{{ list.user.username }}</td>
                                 <td>{{ list.holidayFrom | date('d-m-Y') }} - {{ list.holidayTo | date('d-m-Y') }}</td>
-                                <td>5 days</td>
-                                 <td>20 left</td>
+                                <td>{{ list.days }}</td>
+                                 <td>{{ list.user.vacation }}</td>
                                 {% if list.accept == 0 %}
                                     <td><label class="label label-success">accept</label></td>
                                     <td></td>

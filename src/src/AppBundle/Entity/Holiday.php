@@ -53,6 +53,13 @@ class Holiday
     /**
      * @var int
      *
+     * @ORM\Column(name="days", type="integer")
+     */
+    private $days;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="accept", type="integer")
      */
     private $accept;
@@ -231,6 +238,22 @@ class Holiday
     public function setClosed($closed)
     {
         $this->closed = $closed;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDays()
+    {
+        return $this->days;
+    }
+
+    /**
+     * @param int $days
+     */
+    public function setDays($days)
+    {
+        $this->days = $days;
     }
 }
 

@@ -21,6 +21,13 @@ class User extends BaseUser {
     protected $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="vacation", type="integer")
+     */
+    private $vacation;
+
+    /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Group")
      * @ORM\JoinTable(name="fos_user_user_group",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -117,5 +124,21 @@ class User extends BaseUser {
     public function setHoliday($holiday)
     {
         $this->holiday = $holiday;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVacation()
+    {
+        return $this->vacation;
+    }
+
+    /**
+     * @param mixed $vacation
+     */
+    public function setVacation($vacation)
+    {
+        $this->vacation = $vacation;
     }
 }
