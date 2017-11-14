@@ -27,7 +27,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getRepository('AppBundle:Holiday');
         $query = $em->createQueryBuilder('u')
-            ->where('u.open = 1')
+            ->where('u.closed = 0')
             ->getQuery();
         $user = $query->getResult();
 
@@ -41,39 +41,42 @@ class DefaultController extends Controller
      * @param $entityManager
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function indexListUpdateAction($id)
+    public function updateAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $query = $em->getRepository('AppBundle:Holiday');
+        $accept = $em->getRepository('AppBundle:Holiday')->find($id);
 
-        // Accept DB
-        $newaccept = '1';
-        $accept = $query->findAll();
-
-        foreach ($accept as $accept) {
-            $accept->setaccept($newaccept);
-            $em->persist($accept);
+        if (!$accept) {
+            throw $this->createNotFoundException(
+                'Not found for id '.$id
+            );
         }
 
-        // Closed DB
-        $newopen = '0';
-        $open = $query->findAll();
+        $accept->setaccept('1');
+        $accept->setclosed('1');
+        $em->flush();
 
-        foreach ($open as $open) {
-            $open->setopen($newopen);
+        return $this->redirectToRoute('chef');
+    }
 
+    /**
+     * @Route("/noaccept/{id}", name="noaccept")
+     * @param $entityManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function updateNOAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $accept = $em->getRepository('AppBundle:Holiday')->find($id);
+
+        if (!$accept) {
+            throw $this->createNotFoundException(
+                'Not found for id '.$id
+            );
         }
 
-        // Closed DB
-        $newclosed = '1';
-        $closed = $query->findAll();
-
-        foreach ($closed as $closed) {
-            $closed->setclosed($newclosed);
-
-        }
-
-        // DB write
+        $accept->setaccept('0');
+        $accept->setclosed('1');
         $em->flush();
 
         return $this->redirectToRoute('chef');

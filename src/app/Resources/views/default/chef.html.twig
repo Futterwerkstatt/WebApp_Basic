@@ -19,6 +19,7 @@
                 </thead>
                 <tbody>
                 {% for list in list %}
+                    {% if list.closed == 0 %}
                     <tr>
                         <td>{{ list.id }}</td>
                         <td>{{ list.user.username }}</td>
@@ -26,8 +27,9 @@
                         <td>5 days</td>
                         <td>20 left</td>
                         <td><a href="{{ path('accept',{'id':list.id}) }}"><button type="button" class="btn btn-xs btn-success">accept</button></a></td>
-                        <td><button type="button" class="btn btn-xs btn-danger">declined</button></td>
+                        <td><a href="{{ path('noaccept',{'id':list.id}) }}"><button type="button" class="btn btn-xs btn-danger">declined</button></a></td>
                     </tr>
+                    {% endif %}
                 {% endfor %}
                 </tbody>
             </table>
@@ -49,7 +51,7 @@
                 </thead>
                 <tbody>
                        {% for list in list %}
-                            {% if list.closed == 1 %}
+                           {% if list.closed == 1 %}
                             <tr>
                                 <td>{{ list.id }}</td>
                                 <td>{{ list.user.username }}</td>
@@ -64,9 +66,8 @@
                                     <td><label class="label label-danger">declined</label></td>
                                 {% endif %}
                                 </tr>
-                            {% endif %}
+                           {% endif %}
                         {% endfor %}
-
                 </tbody>
             </table>
         </div>
