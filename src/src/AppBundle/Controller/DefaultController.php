@@ -54,6 +54,8 @@ class DefaultController extends Controller
             );
         }
 
+        //Gedanken - wenn Accept dann Tage (list.user.vacation) - Urlaubstage in DB schreiben
+
         $accept->setaccept('1');
         $accept->setclosed('1');
         $em->flush();
