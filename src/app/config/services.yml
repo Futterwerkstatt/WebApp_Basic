@@ -1,0 +1,18 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    twig.extension.webconfig:
+         class: AppBundle\Twig\Extension\WebConfigExtension
+         arguments:
+            doctrine: "@doctrine"         
+         tags:
+            - { name: twig.extension }
+
+    user.form.profile.type:
+        class: AppBundle\Form\UserProfileType
+        parent: fos_user.profile.form.type
+        tags:
+            - { name: form.type, alias: fos_user_profile }

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ dump(list) }}
+    <div class="row">
+        <div class="col-xs-12"><h3>{{ 'profile.show.heading.open'|trans({}, 'AppBundle') }}</h3></div>
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Holidays</th>
+                    <th>Days</th>
+                    <th>Days left</th>
+                    <th>Accept</th>
+                    <th>Declined</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for list in list %}
+                    <tr>
+                        <td>{{ list.id }}</td>
+                        <td></td>
+                        <td>{{ list.holidayFrom | date('d-m-Y') }} - {{ list.holidayTo | date('d-m-Y') }}</td>
+                        <td>5 days</td>
+                        <td>20 left</td>
+                        <td><button type="button" class="btn btn-xs btn-success">accept</button></td>
+                        <td><button type="button" class="btn btn-xs btn-danger">declined</button></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- accept !-->
+        <div class="col-xs-12"><h3>{{ 'profile.show.heading.accept'|trans({}, 'AppBundle') }}</h3></div>
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Holidays</th>
+                    <th>Days</th>
+                    <th>Days left</th>
+                    <th>Accept</th>
+                    <th>Declined</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Mark Otto</td>
+                        <td>01.01.2017 - 05.01.2017</td>
+                        <td>5 days</td>
+                        <td>20 left</td>
+                        <td><label class="label label-success">accept</label></td>
+                        <td><label class="label label-danger">declined</label></td>
+                        <td></td>
+                        </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    <style>
+
+    </style>
+{% endblock %}

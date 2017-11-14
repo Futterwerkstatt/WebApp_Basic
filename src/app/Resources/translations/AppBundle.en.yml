@@ -1,0 +1,27 @@
+nav:
+    user.account: ' Account'
+    user.profile: 'Profile'
+    user.holiday: 'Holidays'
+    admin: ' Admin'
+    admin.config: 'Configuration'
+    user.options: 'nav.user.option'
+
+
+profile:
+      show.heading.public: 'Header'
+      show.username: 'Username:'
+      show.email: 'Email:'
+      show.team: 'Team:'
+      show.heading.accept: 'Done'
+      show.heading.open: 'Open'
+      show.heading.user.hlist: 'Headline'
+
+admin:
+      config: 'Configuration'
+      config.preview: 'Elements'
+      config.website: 'Website Config'
+      config.theme: 'Theme Config'
+      config.fonts: 'Font Config'
+role:
+      user: 'User'
+      admin: 'Admin'

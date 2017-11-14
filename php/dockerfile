@@ -1,0 +1,30 @@
+FROM php:7-fpm
+
+MAINTAINER Rene Schmusch
+
+RUN apt-get update \
+  && echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
+  && echo 'deb-src http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
+  && apt-get install -y wget \
+  && wget https://www.dotdeb.org/dotdeb.gpg \
+  && apt-key add dotdeb.gpg \
+  && apt-get update \
+  && apt-get install -y php-mysql \
+&& docker-php-ext-install pdo_mysql
+
+RUN wget https://getcomposer.org/download/1.5.2/composer.phar
+RUN wget http://pear.php.net/go-pear.phar
+RUN php go-pear.phar
+
+RUN pecl install Xdebug
+
+RUN usermod -u 1000 www-data
+
+COPY ./overwrite.ini /usr/local/etc/php/conf.d/overwrite.ini
+
+RUN echo 'xdebug.remote_enable=1' >> /usr/local/etc/php/php.ini
+RUN echo 'xdebug.remote_connect_back=1' >> /usr/local/etc/php/php.ini
+RUN echo 'xdebug.remote_port=9000' >> /usr/local/etc/php/php.ini
+
+WORKDIR /var/www/html
+EXPOSE 9000

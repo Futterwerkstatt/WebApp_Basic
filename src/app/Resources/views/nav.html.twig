@@ -1,0 +1,56 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset("image/logo_dr-1.png") }}" class="img_main" /></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav">
+                <li><a href="#"></a></li>
+            </ul>
+
+            {% if is_granted("ROLE_USER") %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span>{{ 'nav.user.account'|trans({}, 'AppBundle') }}</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('fos_user_profile_show') }}">{{ 'nav.user.profile'|trans({}, 'AppBundle') }}</a></li>
+                            <li><a href="#">{{ 'nav.user.options'|trans({}, 'AppBundle') }}</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ path('fos_user_security_logout') }}" >{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                    <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                </ul>
+            {% endif %}
+
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span>{{ 'nav.admin'|trans({}, 'AppBundle') }}</a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="{{ path('admin_config') }}">{{ 'nav.admin.config'|trans({}, 'AppBundle') }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% endif %}
+
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+{% block stylesheets %}
+    <style>
+        .img_main{margin-top: -19px; height: 60px}
+    </style>
+{% endblock %}

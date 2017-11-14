@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(edit_form) }}
+    <div class="page-header">
+        <h2 class="text-primary"><i class="fa fa-cog" aria-hidden="true"></i> {{ 'nav.admin.config'|trans({}, 'AppBundle') }}<span class="pull-right"> <input class="btn btn-primary btn-sm" type="submit" value="Save" /></span> </h2>
+    </div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active"><a href="#config" aria-controls="config" role="tab" data-toggle="pill">{{ 'admin.config'|trans({}, 'AppBundle') }}</a></li>
+        <li role="presentation"><a href="#preview" aria-controls="preview" role="tab" data-toggle="pill">{{ 'admin.config.preview'|trans({}, 'AppBundle') }}</a></li>
+    </ul>    
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active" id="config">     
+            <div class="row">
+
+                {{ form_errors(edit_form) }}
+                <div class="col-sm-6">
+                    <div class="page-header"><h3><i class="fa fa-info-circle text-primary" aria-hidden="true"></i> {{ 'admin.config.website'|trans({}, 'AppBundle') }}</h3></div>
+                                {{ form_row(edit_form.websiteName) }}
+                                {{ form_row(edit_form.websiteDescription) }}
+                    <div class="page-header"><h3><i class="fa fa-font text-primary" aria-hidden="true"></i> {{ 'admin.config.fonts'|trans({}, 'AppBundle') }}</h3></div>
+                                {{ form_row(edit_form.fontAwesomeCSS) }}
+                                {{ form_row(edit_form.fontAwesomeEnable) }}
+                </div>
+                <div class="col-sm-6">
+                    <div class="page-header"><h3><i class="fa fa-picture-o text-primary" aria-hidden="true"></i> {{ 'admin.config.theme'|trans({}, 'AppBundle') }}</h3></div>
+                                {{ form_row(edit_form.bootstrapTheme) }}
+                                {{ form_row(edit_form.bootstrapEnable) }}
+                                {{ form_row(edit_form.bootstrapCSS) }}
+                                {{ form_row(edit_form.bootstrapJS) }}
+                                {{ form_row(edit_form.jQuery) }}
+                </div>
+
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="social"> 
+            <div class="col-sm-6">
+                <div class="page-header"><h3><i class="fa fa-share-alt text-primary" aria-hidden="true"></i> {{ 'admin.config.more'|trans({}, 'AppBundle') }}</h3></div>
+
+            </div>
+        </div>            
+
+        <div role="tabpanel" class="tab-pane" id="preview"> 
+            {{ include('admin/webconfig_htmldemo.html.twig') }}
+        </div>
+
+    </div>
+    {{ form_rest(edit_form) }}
+    {{ form_end(edit_form) }} 
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+        $(function () {
+            if (!$("#web_config_bootstrapEnable").attr("checked")) {
+                $("#web_config_bootstrapTheme").attr('disabled', 'disabled');
+            }
+            $('#web_config_bootstrapEnable').click('web_config_bootstrapTheme', toggleSelection);
+        });
+
+        function toggleSelection(e) {
+            var el = '#' + e.data;
+            console.log(arguments);
+            if (this.checked) {
+                $(el).removeAttr('disabled');
+            } else {
+                $(el).attr('disabled', 'disabled');
+            }
+        }
+    </script>
+{% endblock %}

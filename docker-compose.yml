@@ -1,0 +1,46 @@
+# test
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    env_file:
+      - .env
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    volumes:
+      - ./data/db:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.7
+    ports:
+      - 8080:80
+    links:
+      - db:mysqldb
+  php:
+    build: php
+    env_file:
+      - .env
+#    ports:
+#      - 9000:9000
+    links:
+      - db:mysqldb
+    volumes:
+      - ./src:/var/www/html/${project}
+      - ./logs/symfony:/var/www/html/${project}/app/logs
+  apache2:
+    build: apache2
+    env_file:
+      - .env
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - php
+    volumes_from:
+      - php
+    volumes:
+      - ./logs/apache2:/var/log/apache2

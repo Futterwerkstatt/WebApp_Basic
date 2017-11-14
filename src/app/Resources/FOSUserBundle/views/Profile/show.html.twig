@@ -1,0 +1,35 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+    <div class="page-header">
+        <h2 class="text-primary"><i class="fa fa-cog" aria-hidden="true"></i> {{ 'nav.user.account'|trans({}, 'AppBundle') }}<span class="pull-right"> <a class="btn btn-primary btn-sm" href="{{ url('fos_user_profile_edit') }}">Edit</a></span> </h2>
+    </div>
+
+    {# {% trans_default_domain 'FOSUserBundle' %} #}
+    {{ dump(user) }}
+    <div class="row">
+        
+        <div class="col-xs-12"><h3>{{ 'profile.show.heading.public'|trans({}, 'AppBundle') }}</h3></div>
+
+        
+        <div class="col-md-4">
+            <table class="table table-condensed">
+                <tr>
+                    <td>{{ 'profile.show.username'|trans({}, 'AppBundle') }}</td><td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'profile.show.email'|trans({}, 'AppBundle') }}</td><td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'profile.show.team'|trans({}, 'AppBundle') }}</td><td>{{ user.biography|raw|nl2br }}</td>
+                </tr>
+            </table>        
+        </div>
+        <!--
+        <div class="col-md-4">.col-md-4</div>                
+        <div class="col-md-4">.col-md-4</div>
+        !-->
+    </div>
+
+{% endblock fos_user_content %}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block title %}{{ webconfig.websiteName }} {% if webconfig.websiteDescription %} / {{ webconfig.websiteDescription }} {% endif %} {% endblock %}</title>
+
+        <link href="{{ webconfig.bootstrapCSS }}" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        {% if webconfig.bootstrapEnable %}
+            <link href="{{ webconfig.bootstrapTheme }}" rel="stylesheet">       
+        {% endif %}
+        <style>
+            body { margin-top:70px; }
+        </style>
+
+        {% if webconfig.fontAwesomeEnable %}
+            <link href="{{ webconfig.fontAwesomeCSS }}" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+        {% endif %}
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+
+{% include 'nav.html.twig' %}
+
+    <div class="container" id="content">
+        {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                <div class="alert alert-{{ type }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ message|trans({}, 'AppBundle') }}
+                </div>
+            {% endfor %}
+        {% endfor %}                
+
+    {% block body %}{% endblock %}
+</div>
+
+
+<script type="text/javascript" src="{{ webconfig.getjQuery }}"></script>
+<script type="text/javascript" src="{{ webconfig.bootstrapJS }}" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>
