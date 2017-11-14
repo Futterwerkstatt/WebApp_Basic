@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class TeamController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/team", name="homepage")
      */
     public function indexAction(Request $request)
     {
