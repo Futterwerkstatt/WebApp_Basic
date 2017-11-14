@@ -102,4 +102,20 @@ class User extends BaseUser {
     {
         return $this->userOptions;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getHoliday()
+    {
+        return $this->holiday;
+    }
+
+    /**
+     * @param mixed $holiday
+     */
+    public function setHoliday($holiday)
+    {
+        $this->holiday = $holiday;
+    }
 }

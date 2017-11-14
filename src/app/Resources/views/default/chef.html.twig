@@ -21,7 +21,7 @@
                 {% for list in list %}
                     <tr>
                         <td>{{ list.id }}</td>
-                        <td></td>
+                        <td>{{ list.user.username }}</td>
                         <td>{{ list.holidayFrom | date('d-m-Y') }} - {{ list.holidayTo | date('d-m-Y') }}</td>
                         <td>5 days</td>
                         <td>20 left</td>

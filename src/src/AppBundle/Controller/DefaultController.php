@@ -31,10 +31,10 @@ class DefaultController extends Controller
             ->getQuery();
         $user = $query->getResult();
 
-        var_dump($user);
-
         return $this->render('default/chef.html.twig', array(
             'list' => $user
         ));
     }
+
 }
+
