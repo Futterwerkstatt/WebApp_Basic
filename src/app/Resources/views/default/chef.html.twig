@@ -48,18 +48,22 @@
                 </tr>
                 </thead>
                 <tbody>
-
+                {% for list in list %}
                     <tr>
-                        <td>1</td>
-                        <td>Mark Otto</td>
-                        <td>01.01.2017 - 05.01.2017</td>
+                        <td>{{ list.id }}</td>
+                        <td>{{ list.user.username }}</td>
+                        <td>{{ list.holidayFrom | date('d-m-Y') }} - {{ list.holidayTo | date('d-m-Y') }}</td>
                         <td>5 days</td>
                         <td>20 left</td>
-                        <td><label class="label label-success">accept</label></td>
-                        <td><label class="label label-danger">declined</label></td>
-                        <td></td>
+                        {% if list.accept == 0 %}
+                            <td><label class="label label-success">accept</label></td>
+                            <td></td>
+                        {% else %}
+                            <td></td>
+                            <td><label class="label label-danger">declined</label></td>
+                        {% endif %}
                         </tr>
-
+                {% endfor %}
                 </tbody>
             </table>
         </div>

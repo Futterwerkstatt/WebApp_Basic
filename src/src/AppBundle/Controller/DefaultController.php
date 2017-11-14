@@ -27,7 +27,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getRepository('AppBundle:Holiday');
         $query = $em->createQueryBuilder('u')
-            ->where('u.accept = 0')
+            ->where('u.open = 0')
             ->getQuery();
         $user = $query->getResult();
 
