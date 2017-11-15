@@ -34,12 +34,12 @@ class VacationController extends Controller
    {
 
        $form = $this->createFormBuilder()
-           ->add('starts', DateType::class, [
+           ->add('from', DateType::class, [
                'widget' => 'single_text',
                'format' => 'dd-MM-yyyy',
                'data' => new \DateTime()
            ])
-           ->add('ends', DateType::class, [
+           ->add('to', DateType::class, [
                'widget' => 'single_text',
                'format' => 'dd-MM-yyyy',
                'data' => new \DateTime()
