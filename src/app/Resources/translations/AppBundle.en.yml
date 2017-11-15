@@ -5,6 +5,14 @@ nav:
     admin: ' Admin'
     admin.config: 'Configuration'
     user.options: 'nav.user.option'
+    boss: 'Boss'
+    boss.list: 'List'
+    team: 'Team'
+    team.list: 'List'
+    worker: 'Worker'
+    worker.list: 'List'
+    trainee: 'Trainee'
+    trainee.list: 'List'
 
 
 profile:

@@ -21,18 +21,17 @@ class DefaultController extends Controller
 
     // User Daten holen
     /**
-     * @Route("/chef", name="chef")
+     * @Route("/boss", name="boss")
      */
     public function indexListAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getRepository('AppBundle:Holiday');
         $query = $em->createQueryBuilder('u')
-            ->where('u.closed = 0')
             ->getQuery();
         $user = $query->getResult();
 
-        return $this->render('default/chef.html.twig', array(
+        return $this->render('default/boss.html.twig', array(
             'list' => $user
         ));
     }
@@ -60,7 +59,7 @@ class DefaultController extends Controller
         $accept->setclosed('1');
         $em->flush();
 
-        return $this->redirectToRoute('chef');
+        return $this->redirectToRoute('boss');
     }
 
     //Urlaub abgelehnt in DB schreiben
@@ -84,7 +83,31 @@ class DefaultController extends Controller
         $accept->setclosed('1');
         $em->flush();
 
-        return $this->redirectToRoute('chef');
+        return $this->redirectToRoute('boss');
+    }
+
+    //Change Update in DB schreiben
+    /**
+     * @Route("/change/{id}", name="change")
+     * @param $entityManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function updateChangeAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $accept = $em->getRepository('AppBundle:Holiday')->find($id);
+
+        if (!$accept) {
+            throw $this->createNotFoundException(
+                'Not found for id '.$id
+            );
+        }
+
+        $accept->setaccept('0');
+        $accept->setclosed('0');
+        $em->flush();
+
+        return $this->redirectToRoute('boss');
     }
 }
 

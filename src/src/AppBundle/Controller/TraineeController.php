@@ -2,18 +2,18 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
-class TeamController extends Controller
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+class TraineeController extends Controller
 {
     /**
-     * @Route("/team", name="homepage")
+     * @Route("/trainee", name="trainee")
      */
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
+        return $this->render('default/team.html.twig', [
             //'debug' => $this->getUser(),
         ]);
     }

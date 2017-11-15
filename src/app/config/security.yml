@@ -7,9 +7,10 @@ security:
     role_hierarchy:
         ROLE_ADMIN:       [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-        ROLE_CHEF:        [ROLE_CHEF]
+        ROLE_BOSS:        [ROLE_BOSS]
         ROLE_TEAM:        [ROLE_TEAM]
         ROLE_WORKER:      [ROLE_WORKER]
+        ROLE_TRAINEE:      [ROLE_TRAINEE]
 
         
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
@@ -30,7 +31,7 @@ security:
                 csrf_token_generator: security.csrf.token_manager
                 always_use_default_target_path : true
                 default_target_path: /
-                use_referer : true                
+                use_referer : true
             logout:       true
             anonymous:    true
 
@@ -39,5 +40,7 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
-        - { path: ^/chef, role: ROLE_CHEF}
+        - { path: ^/boss, role: ROLE_BOSS}
         - { path: ^/team, role: ROLE_TEAM}
+        - { path: ^/worker, role: ROLE_WORKER}
+        - { path: ^/trainee, role: ROLE_TRAINEE}

@@ -18,7 +18,7 @@
             {% if is_granted("ROLE_USER") %}
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span>{{ 'nav.user.account'|trans({}, 'AppBundle') }}</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> &nbsp; {{ 'nav.user.account'|trans({}, 'AppBundle') }}</a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('fos_user_profile_show') }}">{{ 'nav.user.profile'|trans({}, 'AppBundle') }}</a></li>
                             <li><a href="#">{{ 'nav.user.options'|trans({}, 'AppBundle') }}</a></li>
@@ -37,7 +37,7 @@
             {% if is_granted('ROLE_ADMIN') %}
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span>{{ 'nav.admin'|trans({}, 'AppBundle') }}</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> &nbsp; {{ 'nav.admin'|trans({}, 'AppBundle') }}</a>
                         <ul class="dropdown-menu">
 
                             <li><a href="{{ path('admin_config') }}">{{ 'nav.admin.config'|trans({}, 'AppBundle') }}</a></li>
@@ -46,6 +46,50 @@
                 </ul>
             {% endif %}
 
+            {% if is_granted('ROLE_BOSS') %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> &nbsp; {{ 'nav.boss'|trans({}, 'AppBundle') }} &nbsp; <span class="badge">2</span></a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="{{ path('boss') }}">{{ 'nav.boss.list'|trans({}, 'AppBundle') }} <span class="badge">2</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% endif %}
+            {% if is_granted('ROLE_TEAM') %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> &nbsp; {{ 'nav.team'|trans({}, 'AppBundle') }}</a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="{{ path('team') }}">{{ 'nav.team.list'|trans({}, 'AppBundle') }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% endif %}
+            {% if is_granted('ROLE_WORKER') %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> &nbsp; {{ 'nav.worker'|trans({}, 'AppBundle') }}</a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="{{ path('worker') }}">{{ 'nav.worker.list'|trans({}, 'AppBundle') }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% endif %}
+            {% if is_granted('ROLE_TRAINEE') %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> &nbsp; {{ 'nav.trainee'|trans({}, 'AppBundle') }}</a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="{{ path('trainee') }}">{{ 'nav.trainee.list'|trans({}, 'AppBundle') }}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% endif %}
         </div><!--/.navbar-collapse -->
     </div>
 </nav>
