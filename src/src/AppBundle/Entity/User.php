@@ -23,7 +23,7 @@ class User extends BaseUser {
     /**
      * @var int
      *
-     * @ORM\Column(name="vacation", type="integer")
+     * @ORM\Column(name="vacation", type="integer", nullable=true)
      */
     private $vacation;
 
