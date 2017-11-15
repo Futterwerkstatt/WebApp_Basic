@@ -44,3 +44,4 @@ security:
         - { path: ^/team, role: ROLE_TEAM}
         - { path: ^/worker, role: ROLE_WORKER}
         - { path: ^/trainee, role: ROLE_TRAINEE}
+        - { path: ^/vacation, role: [ROLE_BOSS, ROLE_ADMIN, ROLE_TEAM, ROLE_WORKER, ROLE_TRAINEE]}

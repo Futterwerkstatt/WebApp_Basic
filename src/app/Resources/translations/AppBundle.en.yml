@@ -13,6 +13,7 @@ nav:
     worker.list: 'List'
     trainee: 'Trainee'
     trainee.list: 'List'
+    vacation.list: 'Vacation'
 
 
 profile:
