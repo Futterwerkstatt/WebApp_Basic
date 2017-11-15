@@ -34,14 +34,15 @@ class VacationController extends Controller
    {
 
        $form = $this->createFormBuilder()
-           ->add('Date', DateType::class, [
-               'attr' => [
-                   'class' => 'form-control input-inline datepicker',
-                   'data-provide' => 'datepicker',
-                   'data-date-format' => 'dd-mm-yyyy',
-                   'daysOfWeekHighlighted' => "1",
-                   'daysOfWeekDisabled' => '0,6'
-               ]
+           ->add('starts', DateType::class, [
+               'widget' => 'single_text',
+               'format' => 'dd-MM-yyyy',
+               'data' => new \DateTime()
+           ])
+           ->add('ends', DateType::class, [
+               'widget' => 'single_text',
+               'format' => 'dd-MM-yyyy',
+               'data' => new \DateTime()
            ])
            ->getForm();
 
