@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme form ':Form:bootstrap_3_cool.html.twig' %}
 {% block body %}
         <div class="row">
             <div class="col-xs-12"><h3>{{ 'profile.show.heading.open'|trans({}, 'AppBundle') }}</h3></div>
@@ -19,9 +19,19 @@
                 </div>
             </div>
         </div>
-<!-- form_start(form)
-     form_widget(form)
-    form_end(form) !-->
+
+
+    {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Create Vacation</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
 
 
 {% endblock %}
