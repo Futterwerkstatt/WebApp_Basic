@@ -17,4 +17,5 @@ ADD ${ssl_interim_file} /etc/apache2/ssl-certs/${ssl_interim_file}
 WORKDIR /var/www/html
 EXPOSE 80 443
 
+RUN rm -f /var/run/apache2/apache2.pid
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

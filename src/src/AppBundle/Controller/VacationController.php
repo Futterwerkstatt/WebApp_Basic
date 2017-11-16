@@ -2,15 +2,13 @@
 
 namespace AppBundle\Controller;
 
-use Couchbase\DateRangeSearchFacet;
+use AppBundle\Entity\Holiday;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Finder\Iterator\DateRangeFilterIterator;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class VacationController extends Controller
 {
@@ -26,9 +24,10 @@ class VacationController extends Controller
         ]);
     }
 
-
     /**
      * @Route("/vacation", name="vacation")
+     * @param $entityManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
    public function FormAction()
    {
@@ -48,5 +47,54 @@ class VacationController extends Controller
 
        return $this->render('vacation.html.twig', ['form' => $form->createView()]);
 
+   }
+
+    public function insertAction(Request $request)
+    {
+        // User ID
+        $token = $this->get('security.token_storage');
+        $token = $token->getToken()->getUser()->getId();
+
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(new Holiday());
+        $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                #if ($form->isSubmitted()){
+
+                $holiday = $form->getData();
+
+                $holiday->setUserid($token);
+                $holiday->setHolidayFrom(new \DateTime('tomorrow noon'));
+                $holiday->setHolidayTo(new \DateTime('tomorrow noon'));
+                $holiday->setDays('0');
+                $holiday->setAccept('0');
+                $holiday->setClosed('0');
+
+                $em->persist($holiday);
+                $em->flush();
+
+                return $this->redirectToRoute('vacation');
+
+            }
+        return $this->redirectToRoute('vacation');
+    }
+
+    private function getErrorMessages(\Symfony\Component\Form\Form $form) {
+        $errors = array();
+
+        if ($form->hasChildren()) {
+            foreach ($form->getChildren() as $child) {
+                if (!$child->isValid()) {
+                    $errors[$child->getName()] = $this->getErrorMessages($child);
+                }
+            }
+        } else {
+            foreach ($form->getErrors() as $key => $error) {
+                $errors[] = $error->getMessage();
+            }
+        }
+
+        return $errors;
     }
 }

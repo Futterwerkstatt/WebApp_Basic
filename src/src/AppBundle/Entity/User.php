@@ -54,6 +54,7 @@ class User extends BaseUser {
      */
     private $holiday;
 
+
     /*
      *
      */
@@ -141,4 +142,5 @@ class User extends BaseUser {
     {
         $this->vacation = $vacation;
     }
+
 }
