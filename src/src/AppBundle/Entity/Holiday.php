@@ -53,7 +53,7 @@ class Holiday
     /**
      * @var int
      *
-     * @ORM\Column(name="days", type="integer")
+     * @ORM\Column(name="days", type="string", length=255)
      */
     private $days;
 

@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class VacationController extends Controller
 {
@@ -59,11 +61,23 @@ class VacationController extends Controller
                 $holiday = $form->getData();
                 $em = $this->getDoctrine()->getManager();
 
-                #$interval = $holidayFrom->diff($holidayTo);
-                #$days = $interval->format('%R%a days');
+                // difference between Date
+                /*
+                $hfrom = $holiday->getHolidayFrom();
+                $hto = $holiday->getHolidayTo();
 
+                $start = new DateTime($hfrom);
+                $stop = new DateTime($hto);
+
+                $interval = $start->diff($stop);
+                $days = $interval->format('%d days');
+                */
+                dump($interval);
+                die();
+
+                $days ='0';
                 $holiday->setUser($token);
-                $holiday->setdays('0');
+                $holiday->setdays($days);
                 $holiday->setaccept('0');
                 $holiday->setclosed('0');
 
