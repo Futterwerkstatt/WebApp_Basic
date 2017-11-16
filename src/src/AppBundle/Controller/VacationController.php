@@ -62,17 +62,18 @@ class VacationController extends Controller
                 $em = $this->getDoctrine()->getManager();
 
                 // difference between Date
-                /*
-                $hfrom = $holiday->getHolidayFrom();
-                $hto = $holiday->getHolidayTo();
 
-                $start = new DateTime($hfrom);
-                $stop = new DateTime($hto);
+                $hfrom = $holiday->getHolidayFrom()->format('Y-m-d');
+                $hto = $holiday->getHolidayTo()->format('Y-m-d');
 
-                $interval = $start->diff($stop);
-                $days = $interval->format('%d days');
-                */
-                dump($interval);
+                #$start = new DateTime($hfrom)->format('Y-m-d');
+                #$stop = new DateTime($hto)->format('Y-m-d');
+
+                #$interval = $hfrom->diff($hto);
+                #$diff = date_diff(new DateTime(), $member->getRegDate());
+                #$days = $interval->format('%R%a days');
+
+                dump($hfrom);
                 die();
 
                 $days ='0';
