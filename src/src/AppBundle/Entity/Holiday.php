@@ -28,13 +28,13 @@ class Holiday
      */
     private $user;
 
-    /*
+/*
     /**
      * @var int
      *
      * @ORM\Column(name="userid", type="integer")
      */
-    //private $userid;
+//    private $userid;
 
     /**
      * @var \DateTime
@@ -88,9 +88,9 @@ class Holiday
      *
      * @return Holiday
      */
-    public function setUserid($userid)
+    public function setUser($user)
     {
-        $this->userid = $userid;
+        $this->user = $user;
 
         return $this;
     }
@@ -100,9 +100,9 @@ class Holiday
      *
      * @return int
      */
-    public function getUserid()
+    public function getUser()
     {
-        return $this->userid;
+        return $this->user;
     }
 
     /**
@@ -177,21 +177,6 @@ class Holiday
         return $this->accept;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param mixed $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-    }
 
     /**
      * @return int

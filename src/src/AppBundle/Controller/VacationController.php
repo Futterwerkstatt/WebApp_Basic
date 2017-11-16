@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class VacationController extends Controller
@@ -24,62 +25,65 @@ class VacationController extends Controller
         ]);
     }
 
+
     /**
      * @Route("/vacation", name="vacation")
-     * @param $entityManager
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-   public function FormAction()
-   {
-
-       $form = $this->createFormBuilder()
-           ->add('from', DateType::class, [
-               'widget' => 'single_text',
-               'format' => 'dd-MM-yyyy',
-               'data' => new \DateTime()
-           ])
-           ->add('to', DateType::class, [
-               'widget' => 'single_text',
-               'format' => 'dd-MM-yyyy',
-               'data' => new \DateTime()
-           ])
-           ->getForm();
-
-       return $this->render('vacation.html.twig', ['form' => $form->createView()]);
-
-   }
 
     public function insertAction(Request $request)
     {
+        $holiday = new Holiday();
+
+        $form = $this->createFormBuilder($holiday)
+            ->add('holidayFrom', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'data' => new \DateTime()
+            ])
+            ->add('holidayTo', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'data' => new \DateTime()
+            ])
+            ->getForm();
+
         // User ID
         $token = $this->get('security.token_storage');
-        $token = $token->getToken()->getUser()->getId();
-
-        $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new Holiday());
+        $token = $token->getToken()->getUser();
         $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-                #if ($form->isSubmitted()){
 
                 $holiday = $form->getData();
+                $em = $this->getDoctrine()->getManager();
 
-                $holiday->setUserid($token);
-                $holiday->setHolidayFrom(new \DateTime('tomorrow noon'));
-                $holiday->setHolidayTo(new \DateTime('tomorrow noon'));
-                $holiday->setDays('0');
-                $holiday->setAccept('0');
-                $holiday->setClosed('0');
+                #$interval = $holidayFrom->diff($holidayTo);
+                #$days = $interval->format('%R%a days');
+
+                $holiday->setUser($token);
+                $holiday->setdays('0');
+                $holiday->setaccept('0');
+                $holiday->setclosed('0');
 
                 $em->persist($holiday);
-                $em->flush();
+                try {
+                    $em->flush();
+                } catch(\PDOException $e){
+                    return new Response($e->getMessage());
+                }
 
-                return $this->redirectToRoute('vacation');
+                #return $this->redirectToRoute('homepage');
 
             }
-        return $this->redirectToRoute('vacation');
+        return $this->render('vacation.html.twig', ['form' => $form->createView()]);
     }
 
+    /**
+     * @param \Symfony\Component\Form\Form $form
+     * @return array
+     */
     private function getErrorMessages(\Symfony\Component\Form\Form $form) {
         $errors = array();
 
