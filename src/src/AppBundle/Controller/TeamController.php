@@ -18,5 +18,20 @@ class TeamController extends Controller
         ]);
     }
 
+    // User Daten holen
+    /**
+     * @Route("/team", name="team")
+     */
+    public function indexListAction(Request $request)
+    {
 
+        $em = $this->getDoctrine()->getRepository('AppBundle:Holiday');
+        $query = $em->createQueryBuilder('u')
+            ->getQuery();
+        $user = $query->getResult();
+
+        return $this->render('list.html.twig', array(
+            'list' => $user
+        ));
+    }
 }

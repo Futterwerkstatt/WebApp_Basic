@@ -14,6 +14,8 @@ nav:
     trainee: 'Trainee'
     trainee.list: 'List'
     vacation.list: 'Vacation'
+    admin.all.user.config: 'User'
+    admin.edit.user: 'Edit'
 
 
 profile:
@@ -31,6 +33,13 @@ admin:
       config.website: 'Website Config'
       config.theme: 'Theme Config'
       config.fonts: 'Font Config'
+      alluser.show.heading: 'All User'
 role:
       user: 'User'
       admin: 'Admin'
+
+message:
+        vacation.success.message: 'saved successfully'
+
+registration:
+        submit: 'Register'

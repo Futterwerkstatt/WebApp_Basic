@@ -10,6 +10,11 @@ services:
          tags:
             - { name: twig.extension }
 
+    app.form.registration:
+       class: AppBundle\Form\RegistrationType
+       tags:
+           - { name: form.type, alias: app_user_registration }
+
     user.form.profile.type:
         class: AppBundle\Form\UserProfileType
         parent: fos_user.profile.form.type

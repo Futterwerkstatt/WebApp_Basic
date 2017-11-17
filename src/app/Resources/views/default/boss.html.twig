@@ -23,8 +23,8 @@
                         <td>{{ liste.id }}</td>
                         <td style="width: 200px">{{ liste.user.username }}</td>
                         <td>{{ liste.holidayFrom | date('d-m-Y') }} - {{ liste.holidayTo | date('d-m-Y') }}</td>
-                        <td>{{ liste.days }}</td>
-                        <td>{{ liste.user.vacation }}</td>
+                        <td>{{ liste.days }} days</td>
+                        <td>{{ liste.user.vacation }} days left</td>
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-xs btn-success">Aktion</button>
@@ -81,8 +81,8 @@
                                 <td>{{ liste.id }}</td>
                                 <td style="width: 200px">{{ liste.user.username }}</td>
                                 <td>{{ liste.holidayFrom | date('d-m-Y') }} - {{ liste.holidayTo | date('d-m-Y') }}</td>
-                                <td>{{ liste.days }}</td>
-                                <td>{{ liste.user.vacation }}</td>
+                                <td>{{ liste.days }} days</td>
+                                <td>{{ liste.user.vacation }} days left</td>
                                 {% if liste.accept == 1 %}
                                     <td>
                                         <div class="btn-group">
@@ -120,8 +120,5 @@
         </div>
     </div>
 {% endblock %}
-{% block stylesheets %}
-    <style>
-
-    </style>
-{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block javascripts %}{% endblock %}

@@ -7,28 +7,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Validator\Constraints\Date;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class VacationController extends Controller
 {
-
-    /**
-     * @Route("/vacation", name="vacation")
-     */
-    public function indexAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('vacation.html.twig', [
-            //'debug' => $this->getUser(),
-        ]);
-    }
-
-
-    /**
+     /**
      * @Route("/vacation", name="vacation")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -54,6 +37,7 @@ class VacationController extends Controller
         // User ID
         $token = $this->get('security.token_storage');
         $token = $token->getToken()->getUser();
+
         $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
@@ -62,35 +46,25 @@ class VacationController extends Controller
                 $em = $this->getDoctrine()->getManager();
 
                 // difference between Date
-/*
                 $hfrom = $holiday->getHolidayFrom()->format('Y-m-d');
                 $hto = $holiday->getHolidayTo()->format('Y-m-d');
 
-                #$start = new DateTime($hfrom)->format('Y-m-d');
-                #$stop = new DateTime($hto)->format('Y-m-d');
+                $interval = new \DateTime($hfrom);
+                $diffdays = $interval->diff(new \DateTime($hto));
+                $days = $diffdays->format('%d');
 
-                $interval = $hfrom->diff($hto);
-                #$diff = date_diff(new DateTime(), $member->getRegDate());
-                $days = $interval->format('%R%a days');
-
-                dump($interval);
-                die();
-*/
-                $days ='0';
                 $holiday->setUser($token);
                 $holiday->setdays($days);
                 $holiday->setaccept('0');
                 $holiday->setclosed('0');
 
                 $em->persist($holiday);
-                try {
-                    $em->flush();
-                } catch(\PDOException $e){
-                    return new Response($e->getMessage());
-                }
-
-                #return $this->redirectToRoute('homepage');
-
+                    try {
+                        $em->flush();
+                    } catch(\PDOException $e){
+                        return new Response($e->getMessage());
+                    }
+                $this->get('session')->getFlashBag()->add('success', 'message.vacation.success.message');
             }
         return $this->render('vacation.html.twig', ['form' => $form->createView()]);
     }

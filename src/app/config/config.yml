@@ -83,6 +83,9 @@ fos_user:
               type: AppBundle\Form\UserProfileType
     group:
             group_class: AppBundle\Entity\Group
+    registration:
+        form:
+              type: AppBundle\Form\RegistrationType
     from_email:
             address: "admin@urlaub.dev"
             sender_name: "Admin"

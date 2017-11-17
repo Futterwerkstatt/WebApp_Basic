@@ -2,6 +2,7 @@
 {% form_theme form ':Form:bootstrap_3_cool.html.twig' %}
 {% block body %}
 
+
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <div class="form-group">
@@ -28,6 +29,100 @@
         $(function() {
             $('input[name="form[holidayFrom]"]').daterangepicker({
                 "singleDatePicker": true,
+                "showWeekNumbers": true,
+                "locale": {
+                    "format": "DD/MM/YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Apply",
+                    "cancelLabel": "Cancel",
+                    "fromLabel": "From",
+                    "toLabel": "To",
+                    "customRangeLabel": "Custom",
+                    "weekLabel": "W",
+                    "daysOfWeek": [
+                        "Su",
+                        "Mo",
+                        "Tu",
+                        "We",
+                        "Th",
+                        "Fr",
+                        "Sa"
+                    ],
+                    "monthNames": [
+                        "January",
+                        "February",
+                        "March",
+                        "April",
+                        "May",
+                        "June",
+                        "July",
+                        "August",
+                        "September",
+                        "October",
+                        "November",
+                        "December"
+                    ],
+                    "firstDay": 1
+                },
+                "showCustomRangeLabel": false,
+                "startDate": "11/11/2017",
+                "endDate": "11/17/2017"
+            }, function (start, end, label) {
+                console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+            });
+        });
+
+
+        $(function() {
+            $('input[name="form[holidayTo]"]').daterangepicker({
+                "singleDatePicker": true,
+                "showWeekNumbers": true,
+                "locale": {
+                    "format": "DD/MM/YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Apply",
+                    "cancelLabel": "Cancel",
+                    "fromLabel": "From",
+                    "toLabel": "To",
+                    "customRangeLabel": "Custom",
+                    "weekLabel": "W",
+                    "daysOfWeek": [
+                        "Su",
+                        "Mo",
+                        "Tu",
+                        "We",
+                        "Th",
+                        "Fr",
+                        "Sa"
+                    ],
+                    "monthNames": [
+                        "January",
+                        "February",
+                        "March",
+                        "April",
+                        "May",
+                        "June",
+                        "July",
+                        "August",
+                        "September",
+                        "October",
+                        "November",
+                        "December"
+                    ],
+                    "firstDay": 1
+                },
+                "showCustomRangeLabel": false,
+                "startDate": "11/11/2017",
+                "endDate": "11/17/2017"
+            }, function (start, end, label) {
+                console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+            });
+        });
+
+        /*
+        $(function() {
+            $('input[name="form[holidayFrom]"]').daterangepicker({
+                "singleDatePicker": true,
                 "startDate": "11/09/2017",
                 "endDate": "11/15/2017"
             }, function(start, end, label) {
@@ -44,5 +139,6 @@
                 console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
             });
         });
+        */
     </script>
 {% endblock %}

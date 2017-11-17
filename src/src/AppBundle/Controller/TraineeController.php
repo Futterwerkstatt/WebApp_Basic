@@ -13,7 +13,7 @@ class TraineeController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('default/team.html.twig', [
+        return $this->render('default/trainee.html.twig', [
             //'debug' => $this->getUser(),
         ]);
     }
