@@ -8,7 +8,3 @@ app:
 fos_user_group:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
     prefix: /group
-
-security_edit_profile:
-    path:     /edit/{id}
-    defaults: { _controller: AppBundle:Security:editUser }
