@@ -12,7 +12,6 @@
                 <th>Name</th>
                 <th>Lastname</th>
                 <th>Email</th>
-                <th>Last Login</th>
                 <th>Roles</th>
                 <th>Days</th>
                 <th>Config</th>
@@ -26,8 +25,7 @@
                     <td>{{ user.firstname|e }}</td>
                     <td>{{ user.lastname|e }}</td>
                     <td>{{ user.email|e }}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ user.roles|join(', ') }}</td>
                     <td>{{ user.vacation|e }}</td>
                     <td>
                         <div class="btn-group">
