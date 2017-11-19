@@ -8,3 +8,13 @@ app:
 fos_user_group:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
     prefix: /group
+
+admin_edit_location:
+    path: /editUser/{id}
+    defaults: { _controller: "AppBundle:Admin:editUser" }
+    methods: GET
+
+admin_delete_location:
+    path: /deleteUser/{id}
+    defaults: { _controller: "AppBundle:Admin:deleteUser" }
+    methods: POST

@@ -35,9 +35,8 @@
                                 <span class="sr-only">Menü ein-/ausblenden</span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url('fos_user_profile_edit') }}">{{ 'nav.admin.edit.user'|trans({}, 'AppBundle') }}</a></li>
-                                <li><a href="{{ url('edit', {'/': user.id}) }}">{{ 'nav.admin.edit.user'|trans({}, 'AppBundle') }}</a></li>
-                                <li><a href="#">Delete</a></li>
+                                <li><a href="{{ url('editUser',{'id': user.id}) }}">{{ 'nav.admin.edit.user'|trans({}, 'AppBundle') }}</a></li>
+                                <li><a href="{{ url('deleteUser',{'id': user.id}) }}">Delete</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Zukunft -> Mitteilung senden</a></li>
                             </ul>

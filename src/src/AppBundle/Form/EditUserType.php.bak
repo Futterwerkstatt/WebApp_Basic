@@ -1,0 +1,57 @@
+<?php
+
+namespace AdminBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+class UserType extends AbstractType
+{
+    private $roles;
+
+    public function __construct($roles) {
+        $this->roles = $roles;
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('username')
+            ->add('email')
+            ->add('enabled')
+            ->add('roles', 'choice', array(
+                'choices' => $this->flattenArray($this->roles),
+            ))
+            ->add('firstName')
+            ->add('lastName')
+        ;
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Wes\AdminBundle\Entity\User',
+            'roles' => null,
+            'userRole' => null,
+        ));
+    }
+
+    public function getName()
+    {
+        return 'wes_adminbundle_usertype';
+    }
+
+    private function flattenArray(array $data)
+    {
+        $returnData = array();
+
+        foreach($data as $key => $value)
+        {
+            $tempValue = str_replace("ROLE_", '', $key);
+            $tempValue = ucwords(strtolower(str_replace("_", ' ', $tempValue)));
+            $returnData[$key] = $tempValue;
+        }
+        return $returnData;
+    }
+}
