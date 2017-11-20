@@ -10,5 +10,4 @@ namespace AppBundle\Repository;
  */
 class HolidayRepository extends \Doctrine\ORM\EntityRepository
 {
-
 }

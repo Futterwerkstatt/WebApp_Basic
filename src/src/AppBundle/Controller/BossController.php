@@ -31,7 +31,7 @@ class BossController extends Controller
             ->getQuery();
         $user = $query->getResult();
 
-        return $this->render('default/boss.html.twig', array(
+        return $this->render('list.html.twig', array(
             'list' => $user
         ));
     }

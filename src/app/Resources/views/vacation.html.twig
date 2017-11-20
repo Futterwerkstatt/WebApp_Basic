@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
 {% form_theme form ':Form:bootstrap_3_cool.html.twig' %}
+
 {% block body %}
 
 
     {{ form_start(form) }}
+
+    <div class="page-header">
+        <h2 class="text-primary"><i class="fa fa-suitcase text-primary" aria-hidden="true"></i> {{ 'vacation.create'|trans({}, 'AppBundle') }} </h2>
+    </div>
+
+
     {{ form_widget(form) }}
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -13,10 +20,13 @@
     {{ form_end(form) }}
 
 {% endblock %}
+
 {% block stylesheets %}
 
 {% endblock %}
+
 {% block javascripts %}
+
     <!-- Include Required Prerequisites -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -118,27 +128,6 @@
                 console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
             });
         });
-
-        /*
-        $(function() {
-            $('input[name="form[holidayFrom]"]').daterangepicker({
-                "singleDatePicker": true,
-                "startDate": "11/09/2017",
-                "endDate": "11/15/2017"
-            }, function(start, end, label) {
-                console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
-            });
-        });
-
-        $(function() {
-            $('input[name="form[holidayTo]"]').daterangepicker({
-                "singleDatePicker": true,
-                "startDate": "11/09/2017",
-                "endDate": "11/15/2017"
-            }, function(start, end, label) {
-                console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
-            });
-        });
-        */
     </script>
+
 {% endblock %}

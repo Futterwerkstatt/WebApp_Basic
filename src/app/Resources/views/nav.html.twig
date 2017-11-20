@@ -21,7 +21,6 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> &nbsp; {{ 'nav.user.account'|trans({}, 'AppBundle') }}</a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('fos_user_profile_show') }}">{{ 'nav.user.profile'|trans({}, 'AppBundle') }}</a></li>
-                            <li><a href="#">{{ 'nav.user.options'|trans({}, 'AppBundle') }}</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ path('fos_user_security_logout') }}" >{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
@@ -39,8 +38,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> &nbsp; {{ 'nav.admin'|trans({}, 'AppBundle') }}</a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('admin_config') }}">{{ 'nav.admin.config'|trans({}, 'AppBundle') }}</a></li>
                             <li><a href="{{ path('admin_userlist') }}">{{ 'nav.admin.all.user.config'|trans({}, 'AppBundle') }}</a></li>
+                            <li><a href="{{ path('admin_config') }}">{{ 'nav.admin.config'|trans({}, 'AppBundle') }}</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -49,9 +48,9 @@
             {% if is_granted('ROLE_BOSS') %}
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> &nbsp; {{ 'nav.boss'|trans({}, 'AppBundle') }} &nbsp; <span class="badge">2</span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span> &nbsp; {{ 'nav.boss'|trans({}, 'AppBundle') }} &nbsp; <span class="badge">8</span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('boss') }}">{{ 'nav.boss.list'|trans({}, 'AppBundle') }} <span class="badge">2</span></a></li>
+                            <li><a href="{{ path('boss') }}">{{ 'nav.boss.list'|trans({}, 'AppBundle') }}</a></li>
                             <li><a href="{{ path('vacation') }}">{{ 'nav.vacation.list'|trans({}, 'AppBundle') }}</a></li>
                         </ul>
                     </li>
@@ -92,6 +91,7 @@
         </div><!--/.navbar-collapse -->
     </div>
 </nav>
+
 {% block stylesheets %}
     <style>
         .img_main{margin-top: -19px; height: 60px}

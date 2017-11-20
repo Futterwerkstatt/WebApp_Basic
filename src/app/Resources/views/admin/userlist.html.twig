@@ -1,53 +1,61 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="row">
-    <div class="col-xs-12"><h3>{{ 'admin.alluser.show.heading'|trans({}, 'AppBundle') }}</h3></div>
-    <div class="col-md-12">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Username</th>
-                <th>Name</th>
-                <th>Lastname</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Days</th>
-                <th>Config</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for user in users %}
+
+    <div class="row">
+
+        <!-- nav User list -->
+        <div class="page-header">
+            <h2 class="text-primary"><i class="fa fa-cog" aria-hidden="true"></i> {{ 'admin.alluser.show.heading'|trans({}, 'AppBundle') }}</h2>
+        </div>
+
+        <!-- User list -->
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
                 <tr>
-                    <td>{{ user.id|e }}</td>
-                    <td>{{ user.username|e }}</td>
-                    <td>{{ user.firstname|e }}</td>
-                    <td>{{ user.lastname|e }}</td>
-                    <td>{{ user.email|e }}</td>
-                    <td>{{ user.roles|join(', ') }}</td>
-                    <td>{{ user.vacation|e }}</td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-xs btn-default">Aktion</button>
-                            <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Menü ein-/ausblenden</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ url('editUser',{'id': user.id}) }}">{{ 'nav.admin.edit.user'|trans({}, 'AppBundle') }}</a></li>
-                                <li><a href="{{ url('deleteUser',{'id': user.id}) }}">Delete</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Zukunft -> Mitteilung senden</a></li>
-                            </ul>
-                        </div>
-                    </td>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Days</th>
+                    <th>Config</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id|e }}</td>
+                        <td>{{ user.username|e }}</td>
+                        <td>{{ user.firstname|e }}</td>
+                        <td>{{ user.lastname|e }}</td>
+                        <td>{{ user.email|e }}</td>
+                        <td>{{ user.roles|join(', ') }}</td>
+                        <td>{{ user.vacation|e }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-xs btn-default">Aktion</button>
+                                <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Menü ein-/ausblenden</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url('editUser',{'id': user.id}) }}">{{ 'nav.admin.edit.user'|trans({}, 'AppBundle') }}</a></li>
+                                    <li><a href="{{ url('deleteUser',{'id': user.id}) }}">Delete</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Zukunft -> Mitteilung senden</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+
 {% endblock %}
 {% block stylesheets %}{% endblock %}
 {% block javascripts %}{% endblock %}

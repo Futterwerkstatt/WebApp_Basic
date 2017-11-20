@@ -14,17 +14,17 @@ nav:
     trainee: 'Trainee'
     trainee.list: 'List'
     vacation.list: 'Vacation'
-    admin.all.user.config: 'User'
+    admin.all.user.config: 'User list'
     admin.edit.user: 'Edit'
-
+    admin.edituser: 'User edit'
 
 profile:
       show.heading.public: 'Header'
       show.username: 'Username:'
       show.email: 'Email:'
       show.team: 'Team:'
-      show.heading.accept: 'Done'
-      show.heading.open: 'Open'
+      show.heading.accept: 'Done list'
+      show.heading.open: 'Open list'
       show.heading.user.hlist: 'Headline'
 
 admin:
@@ -34,6 +34,8 @@ admin:
       config.theme: 'Theme Config'
       config.fonts: 'Font Config'
       alluser.show.heading: 'All User'
+      delete.user: 'User deleted'
+
 role:
       user: 'User'
       admin: 'Admin'
@@ -43,3 +45,6 @@ message:
 
 registration:
         submit: 'Register'
+
+vacation:
+        create: 'Create vacation'

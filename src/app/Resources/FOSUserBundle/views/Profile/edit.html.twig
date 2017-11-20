@@ -5,15 +5,15 @@
 
     {{ form_start(form) }}
     
-    <div class="page-header">
-        <h2 class="text-primary"><i class="fa fa-cog" aria-hidden="true"></i> {{ 'nav.user.account'|trans({}, 'AppBundle') }}<span class="pull-right"> <a class="btn btn-default btn-sm" href="{{ url('fos_user_profile_show') }}" />Cancel</a> <input class="btn btn-primary btn-sm" value="Save" type="submit" /></span> </h2>
-    </div>
+        <div class="page-header">
+            <h2 class="text-primary"><i class="fa fa-pencil" aria-hidden="true"></i> {{ 'nav.user.account'|trans({}, 'AppBundle') }}<span class="pull-right"> <a class="btn btn-default btn-sm" href="{{ url('fos_user_profile_show') }}" />Cancel</a> <input class="btn btn-primary btn-sm" value="Save" type="submit" /></span> </h2>
+        </div>
 
-    <div>
+        <div>
 
         {{ form_widget(form) }}
 
         {{ form_end(form) }}        
 
-    </div>
+        </div>
 {% endblock fos_user_content %}

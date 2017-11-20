@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Form\EditUserType;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,50 +23,30 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class EditUserController extends Controller
 {
+
     /**
-     * Edit the user.
      * @Route("/editUser/{id}", name="editUser")
      * @param Request $request
-     * @return Response
+     * @param $id
+     * @return array|RedirectResponse
      */
-    public function EditUserAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('AppBundle:User')->findOneBy(array(
             'id'    => $id
         ));
 
-        /** @var $dispatcher EventDispatcherInterface */
-        $dispatcher = $this->get('event_dispatcher');
-        $event = new GetResponseUserEvent($user, $request);
-        $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_INITIALIZE, $event);
-        if (null !== $event->getResponse()) {
-            return $event->getResponse();
-        }
-        /** @var $formFactory FactoryInterface */
-        $formFactory = $this->get('fos_user.profile.form.factory');
-        $form = $formFactory->createForm();
-        $form->setData($user);
+        $form = $this->createForm(EditUserType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var $userManager UserManagerInterface */
-            $userManager = $this->get('fos_user.user_manager');
-            $user = $em->getRepository('AppBundle:User')->findOneBy(array(
-                'id'    => $id
-            ));
-            $event = new FormEvent($form, $request);
-            $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
-            $userManager->updateUser($user);
-            if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_profile_show');
-                $response = new RedirectResponse($url);
-            }
-            $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-            return $response;
+
+        if ($form->isValid()) {
+            $em->persist($user);
+            $em->flush();
+            return $this->redirect($this->generateUrl('admin_userlist', array()));
         }
-        return $this->render('@FOSUser/Profile/edit.html.twig', array(
+
+        return $this->render('admin/edituser.html.twig', array(
             'form' => $form->createView(),
         ));
     }
-
 }

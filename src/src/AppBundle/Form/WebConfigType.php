@@ -49,19 +49,6 @@ class WebConfigType extends AbstractType {
                 ->add('jQuery', UrlType::class, [
                     'label' => "jQuery", 'disabled' => true
                 ])
-
-            #    ->add('urlFacebook', UrlType::class, [
-            #        'label' => "Facebook Page",
-            #        'required' => false
-            #    ])
-            #   ->add('urlInstagram', UrlType::class, [
-            #        'label' => "Instagram",
-            #        'required' => false
-            #   # ])
-              #  ->add('urlTwitter', UrlType::class, [
-            #        'label' => "Twitter",
-            #        'required' => false
-            #    ])
         ;
     }
 

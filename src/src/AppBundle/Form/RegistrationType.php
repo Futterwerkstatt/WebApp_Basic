@@ -18,7 +18,7 @@ class RegistrationType extends AbstractType
             'entry_options' => array(
                 'label' => false,
                 'choices' => array(
-                    'Boss' => 'ROLE_BOSS',
+                    #'Boss' => 'ROLE_BOSS',
                     'Team' => 'ROLE_TEAM',
                     'Worker' => 'ROLE_WORKER',
                     'Trainee' => 'ROLE_TRAINEE'
@@ -26,7 +26,6 @@ class RegistrationType extends AbstractType
                 )
             )
         );
-
     }
 
     public function getParent(){

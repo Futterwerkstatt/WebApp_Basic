@@ -23,7 +23,7 @@ class DeleteUserController extends Controller
 
         $em->remove($user);
         $em->flush();
-        $this->get('session')->getFlashBag()->add('success', 'message.vacation.success.message');
+        $this->get('session')->getFlashBag()->add('success', 'admin.delete.user');
 
         return $this->redirectToRoute('admin_userlist');
     }

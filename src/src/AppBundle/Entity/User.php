@@ -65,6 +65,7 @@ class User extends BaseUser {
     private $holiday;
 
 
+
     /*
      *
      */

@@ -1,8 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <div class="row">
-        <div class="col-xs-12"><h3>{{ 'profile.show.heading.open'|trans({}, 'AppBundle') }}</h3></div>
+
+        <!-- nav Open list -->
+        <div class="page-header">
+            <h2 class="text-primary"><i class="fa fa-bars" aria-hidden="true"></i> {{ 'profile.show.heading.open'|trans({}, 'AppBundle') }}</h2>
+        </div>
+
+        <!-- Open list -->
         <div class="col-md-12">
             <table class="table table-striped">
                 <thead>
@@ -59,8 +66,13 @@
                 </tbody>
             </table>
         </div>
-        <!-- done !-->
-        <div class="col-xs-12"><h3>{{ 'profile.show.heading.accept'|trans({}, 'AppBundle') }}</h3></div>
+
+        <!-- nav Done list -->
+        <div class="page-header">
+            <h2 class="text-primary"><i class="fa fa-bars" aria-hidden="true"></i> {{ 'profile.show.heading.accept'|trans({}, 'AppBundle') }}</h2>
+        </div>
+
+        <!-- Done list -->
         <div class="col-md-12">
             <table class="table table-striped">
                 <thead>
@@ -119,6 +131,7 @@
             </table>
         </div>
     </div>
+
 {% endblock %}
 {% block stylesheets %}{% endblock %}
 {% block javascripts %}{% endblock %}
