@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\Mapping;
 
 /**
  * HolidayRepository
@@ -10,4 +11,20 @@ namespace AppBundle\Repository;
  */
 class HolidayRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countOpen()
+    {
+        $qb = $this->createQueryBuilder('t');
+
+        return $qb
+            ->select('count(t.id)')
+            ->Where('t.closed = 0')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
